@@ -1,0 +1,50 @@
+<template>
+  <h1>Listado Eventos</h1>
+  <div class="flex">
+    <table class="w-screen border-gray-500 table-auto">
+      <thead class="border-red-700">
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Lugar</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr class="bg-red-100" v-for="event in listEvents" :key="event.id">
+          <td>{{ event.name }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.place }}</td>
+
+          <td class="p-2">
+            <button class="btn bg-blue-700 text-white p-2 m-2">Detalle</button>
+            <button class="btn bg-blue-700 text-white p-2 m-2">Editar</button>
+            <button class="btn bg-red-700 text-white p-2 m-2">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import { computed, reactive, toRefs } from "vue";
+export default {
+  setup() {
+    const state = reactive({
+      listEvents: [
+        { id: 1, name: "MI evento", date: "22-01-2222", place: "mi casa" },
+        { id: 2, name: "Cumple MIO", date: "22-01-2222", place: "mi casa" },
+      ],
+    });
+    return {
+      ...toRefs(state),
+    };
+  },
+};
+</script>
+
+<style>
+table td,
+table th {
+  border: solid 1px black;
+}
+</style>

@@ -48,6 +48,8 @@
 
 <script>
 import { computed, reactive, toRefs } from "vue";
+import axios from "axios";
+
 export default {
   setup() {
     const state = reactive({

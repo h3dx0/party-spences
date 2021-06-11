@@ -35,7 +35,10 @@ export default {
     });
 
     onMounted(() => {
-      state.listEvents = getListEvents();
+      console.log("Mouting app");
+      getListEvents().then((response) => {
+        state.listEvents = response;
+      });
     });
 
     return {

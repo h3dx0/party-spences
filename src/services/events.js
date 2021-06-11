@@ -10,4 +10,18 @@ const getListEvents = async () => {
         alert("Ocurrió un error cargando los eventos");
     }
 };
-export { getListEvents };
+
+const saveEventSpence = async (spence) => {
+    console.log("Save event spence");
+    try {
+        const response = await axios.post("http://localhost:3001/spences", spence);
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        alert("Ocurrió un error agregando el gasto al evento");
+    }
+};
+
+
+
+export { getListEvents, saveEventSpence };

@@ -14,7 +14,9 @@
           <router-link :to="{ name: 'newSpence' }">Nuevo Gasto</router-link>
         </li>
         <li class="p-3">
-          <router-link :to="{ name: 'newSpence' }">Nuevo Invitado</router-link>
+          <router-link :to="{ name: 'inviteContact' }"
+            >Nuevo Invitado</router-link
+          >
         </li>
       </ul>
     </nav>

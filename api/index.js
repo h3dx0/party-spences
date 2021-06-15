@@ -42,6 +42,16 @@ app.get('/spences/:eventId', async (req, res) => {
     res.json({ status: 'OK', data: spences })
 })
 
+app.get('/contacts/:userId', async (req, res) => {
+    console.log("LOADING contacts")
+    const contacts = await knex('user_contacts').crossJoin('contacts', 'user_contacts.contact_id', 'contacts.id').where({ user_id: req.params.userId })
+    res.json({ status: 'OK', data: contacts })
+})
+app.post('/invite', async (req, res) => {
+    console.log("Invite contact", req.body)
+    await knex('events_participants').insert(req.body)
+    res.json({ status: 'OK' })
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

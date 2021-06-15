@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="bg-green-600 text-white" v-if="showAlert">
-      Gasto creado correctamente
+      Invitado correctamente
     </div>
     <div class="m-2 flex flex-col">
       <div class="flex flex-col">
@@ -22,27 +22,27 @@
         </select>
       </div>
       <div class="flex flex-col">
-        <label for="spence-title">Gasto</label>
-        <input
-          type="text"
-          name="spence-title"
-          placeholder="Nombre gasto"
+        <label for="spence-title">Seleccione contacto a invitar</label>
+        <select
+          name="contacts"
+          id="contact"
           class="border-2 border-gray-300 p-1 my-2"
-          v-model="spenceTitle"
-        />
-        <label for="spence-amount">Costo</label>
-
-        <input
-          type="number"
-          name="spence-amount"
-          class="border-2 border-gray-300 p-1 my-2"
-          placeholder="Costo"
-          v-model="spenceAmount"
-        />
+          v-model="contactSelected"
+        >
+          <option
+            v-bind:value="contact.id"
+            v-for="contact in contactsList"
+            :key="contact.id"
+          >
+            {{ contact.name }}
+          </option>
+        </select>
       </div>
-      <p>Evento seleccionado: {{ eventSelected }}</p>
-      <button class="btn bg-blue-700 text-white p-2 my-2" @click="addSpence()">
-        Guardar
+      <button
+        class="btn bg-blue-700 text-white p-2 my-2"
+        @click="saveContact()"
+      >
+        Invitar
       </button>
       <button class="border-2 border-red-300 bg-white-700 text-red-700 p-2">
         Cancelar
@@ -53,16 +53,19 @@
 
 <script>
 import { computed, reactive, toRefs, onMounted } from "vue";
-import { getListEvents, saveEventSpence } from "../services/events.js";
-
+import {
+  getListEvents,
+  getContactsByUser,
+  inviteContactToEvent,
+} from "../services/events.js";
 export default {
   setup() {
     const state = reactive({
       showAlert: false,
       eventsList: [],
       eventSelected: null,
-      spenceTitle: "",
-      spenceAmount: 0.0,
+      contactsList: [],
+      contactSelected: null,
     });
 
     onMounted(() => {
@@ -70,21 +73,23 @@ export default {
       getListEvents().then((response) => {
         state.eventsList = response;
       });
+      getContactsByUser(1).then((response) => {
+        state.contactsList = response;
+      });
     });
 
-    const addSpence = async () => {
-      const spence = {
-        description: state.spenceTitle,
-        amount: state.spenceAmount,
-        eventId: state.eventSelected,
-        owner: 1,
+    const saveContact = async () => {
+      state.showAlert = true;
+      const data = {
+        user_contact_id: state.contactSelected,
+        event_id: state.eventSelected,
       };
-      await saveEventSpence(spence);
+      await inviteContactToEvent(data);
       state.showAlert = true;
     };
     return {
       ...toRefs(state),
-      addSpence,
+      saveContact,
     };
   },
 };

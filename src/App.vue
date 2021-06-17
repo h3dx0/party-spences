@@ -1,22 +1,9 @@
 <template>
   <div class="container mx-auto">
-    <nav class="bg-red-700 text-white">
+    <nav class="bg-red-800 text-white">
       <ul class="flex">
         <li class="p-3">
-          <router-link :to="{ name: 'eventsList' }"
-            >Listado eventos</router-link
-          >
-        </li>
-        <li class="p-3">
-          <router-link :to="{ name: 'newEvent' }">Nuevo Evento</router-link>
-        </li>
-        <li class="p-3">
-          <router-link :to="{ name: 'newSpence' }">Nuevo Gasto</router-link>
-        </li>
-        <li class="p-3">
-          <router-link :to="{ name: 'inviteContact' }"
-            >Nuevo Invitado</router-link
-          >
+          <router-link :to="{ name: 'home' }">Inicio</router-link>
         </li>
       </ul>
     </nav>

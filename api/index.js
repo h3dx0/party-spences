@@ -53,6 +53,18 @@ app.post('/invite', async (req, res) => {
     res.json({ status: 'OK' })
 })
 
+app.post('/register', async (req, res) => {
+    console.log("Register account", req.body)
+    try {
+        await knex('users').insert(req.body)
+        res.json({ status: 'OK' })
+    } catch (error) {
+        console.log(error.message)
+    }
+
+})
+
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

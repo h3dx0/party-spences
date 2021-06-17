@@ -5,11 +5,17 @@ import NewSpence from './pages/NewSpence.vue'
 import ListSpences from './pages/ListSpences.vue'
 import InviteContact from './pages/InviteContact.vue'
 import Home from './pages/Home.vue'
+import Registrer from './pages/Register.vue'
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {
+            path: '/register',
+            component: Registrer,
+            name: 'register'
+        },
         {
             path: '/',
             component: Home,

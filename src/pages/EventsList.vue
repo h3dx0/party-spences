@@ -10,20 +10,7 @@
       </thead>
       <tbody>
         <tr class="bg-red-100" v-for="event in listEvents" :key="event.id">
-          <td>{{ event.name }}</td>
-          <td>{{ event.date }}</td>
-          <td>{{ event.place }}</td>
-
-          <td class="p-2">
-            <button class="btn bg-blue-700 text-white p-2 m-2">Detalle</button>
-            <button class="btn bg-blue-700 text-white p-2 m-2">Editar</button>
-            <router-link
-              :to="{ name: 'listSpences', params: { eventId: event.id } }"
-              class="btn bg-blue-700 text-white p-2 m-2"
-              >Gastos</router-link
-            >
-            <button class="btn bg-red-700 text-white p-2 m-2">Cancelar</button>
-          </td>
+          <event :event="event" />
         </tr>
       </tbody>
     </table>
@@ -33,7 +20,12 @@
 <script>
 import { computed, reactive, toRefs, onMounted } from "vue";
 import { getListEvents } from "../services/events.js";
+import Event from "../components/Event.vue";
+
 export default {
+  components: {
+    Event,
+  },
   setup() {
     const state = reactive({
       listEvents: [],

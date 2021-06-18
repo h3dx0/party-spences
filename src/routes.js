@@ -6,6 +6,7 @@ import ListSpences from './pages/ListSpences.vue'
 import InviteContact from './pages/InviteContact.vue'
 import Home from './pages/Home.vue'
 import Registrer from './pages/Register.vue'
+import EventDetails from './pages/EventDetails.vue'
 
 
 const router = createRouter({
@@ -24,6 +25,11 @@ const router = createRouter({
             path: '/events/list',
             component: EventsList,
             name: 'eventsList'
+        },
+        {
+            path: '/events/:id',
+            component: EventDetails,
+            name: 'eventDetails'
         },
         {
             path: '/events/new',

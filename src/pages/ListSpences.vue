@@ -20,7 +20,7 @@
         <tr class="bg-red-100" v-for="spence in listSpences" :key="spence.id">
           <td>{{ spence.description }}</td>
           <td>${{ spence.amount }}</td>
-          <td>{{ spence.owner }}</td>
+          <td>{{ spence.name }}</td>
           <td></td>
         </tr>
       </tbody>

@@ -38,7 +38,10 @@ app.post('/spences', async (req, res) => {
 
 app.get('/spences/:eventId', async (req, res) => {
     console.log("LOADING spences")
-    const spences = await knex('event_spences').where({ eventId: req.params.eventId })
+    const spences = await knex('event_spences')
+        .crossJoin('users', 'users.id', 'event_spences.owner')
+        .where({ eventId: req.params.eventId })
+
     res.json({ status: 'OK', data: spences })
 })
 

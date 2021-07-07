@@ -6,6 +6,8 @@ import ListSpences from './pages/ListSpences.vue'
 import InviteContact from './pages/InviteContact.vue'
 import Home from './pages/Home.vue'
 import Registrer from './pages/Register.vue'
+import Login from './pages/Login.vue'
+
 import EventDetails from './pages/EventDetails.vue'
 
 
@@ -16,6 +18,11 @@ const router = createRouter({
             path: '/register',
             component: Registrer,
             name: 'register'
+        },
+        {
+            path: '/login',
+            component: Login,
+            name: 'login'
         },
         {
             path: '/',

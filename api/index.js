@@ -64,7 +64,15 @@ app.post('/register', async (req, res) => {
     } catch (error) {
         console.log(error.message)
     }
-
+})
+app.post('/login', async (req, res) => {
+    console.log("Login account", req.body)
+    try {
+        await knex('users').insert(req.body)
+        res.json({ status: 'OK' })
+    } catch (error) {
+        console.log(error.message)
+    }
 })
 
 

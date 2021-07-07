@@ -8,7 +8,7 @@
         >Nuevo Gasto</router-link
       >
     </div>
-    <table class="w-screen border-gray-500 table-auto">
+    <table class="w-full border-gray-500 table-auto">
       <thead class="border-red-700">
         <th>Descripcion</th>
         <th>Cantidad</th>
